@@ -1,3 +1,4 @@
+dist: xenial
 language: php
 php:
   - 7.0
@@ -11,6 +12,7 @@ env:
 install:
   - sudo apt-get update > /dev/null
   - apt-cache search php
+  - echo
   - php -v
   - php -r 'echo "PHP Exists\n";'
   - sudo apt-get install -y php7.0-cli php7.0-xml wget netcat
