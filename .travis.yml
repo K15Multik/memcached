@@ -1,0 +1,24 @@
+language: php
+php:
+  - 7.0
+
+services:
+  - memcached
+
+env:
+  - MEMCACHED_HOST=127.0.0.1
+
+before_install:
+  - sudo apt-get update > /dev/null
+
+install:
+  - sudo apt-get install -y php7.0-cli php7.0-xml wget netcat
+  - wget -O phpunit https://phar.phpunit.de/phpunit-6.phar && chmod +x phpunit
+  - wget https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar -O phpcs && chmod +x phpcs
+
+before_script:
+  - memcached -m 64 -p 11211 -u memcache -l $MEMCACHED_HOST &
+
+script:
+  - ./phpunit
+  - ./phpcs --standard=PSR2 MemcachedClient/MemcachedClient.php

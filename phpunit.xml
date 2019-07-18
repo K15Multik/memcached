@@ -1,0 +1,8 @@
+<phpunit>
+    <testsuites>
+        <testsuite name="MemcachedClient">
+            <file>tests/SyncTest.php</file>
+            <file>tests/NonBlockingTest.php</file>
+        </testsuite>
+    </testsuites>
+</phpunit>
